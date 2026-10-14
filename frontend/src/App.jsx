@@ -47,7 +47,7 @@ export default function App() {
     try {
       const res = await api.loadSampleData();
       if (res.success) {
-        showToast(`Loaded ${res.count} curated transactions across 5 months!`);
+        showToast(`Reset to sample dataset: ${res.count} transactions across 5 months loaded!`);
         await refreshData();
       }
     } catch (err) {
@@ -89,7 +89,9 @@ export default function App() {
       <div className="flex-1 flex flex-col h-screen overflow-hidden">
         <Header
           activeTab={activeTab}
+          setActiveTab={setActiveTab}
           bigDataStatus={bigDataStatus}
+          datasetInfo={overview?.datasetInfo}
           onLoadSample={handleLoadSample}
           onClearData={handleClearData}
           loading={loading}
@@ -101,6 +103,7 @@ export default function App() {
               overview={overview}
               loading={loading}
               setActiveTab={setActiveTab}
+              onLoadSample={handleLoadSample}
             />
           )}
 
@@ -115,10 +118,15 @@ export default function App() {
           )}
 
           {activeTab === 'upload' && (
-            <UploadPage onUploadSuccess={() => {
-              showToast('CSV uploaded and validated successfully!');
-              refreshData();
-            }} />
+            <UploadPage
+              datasetInfo={overview?.datasetInfo}
+              setActiveTab={setActiveTab}
+              onLoadSample={handleLoadSample}
+              onUploadSuccess={() => {
+                showToast('Kaggle dataset imported, mapped & analyzed successfully!');
+                refreshData();
+              }}
+            />
           )}
 
           {activeTab === 'bigdata' && (

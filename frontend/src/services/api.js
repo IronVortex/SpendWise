@@ -22,11 +22,13 @@ export const api = {
   getMonthlyComparison: () => fetch(`${API_BASE}/analytics/monthly-comparison`).then(handleResponse),
   getAlerts: () => fetch(`${API_BASE}/analytics/alerts`).then(handleResponse),
 
-  // Expenses CRUD
+  // Expenses CRUD & Dataset Management
   getExpenses: (params = {}) => {
     const query = new URLSearchParams(params).toString();
     return fetch(`${API_BASE}/expenses?${query}`).then(handleResponse);
   },
+  getDatasetInfo: () => fetch(`${API_BASE}/expenses/dataset-info`).then(handleResponse),
+
   addExpense: (expense) =>
     fetch(`${API_BASE}/expenses`, {
       method: 'POST',
@@ -34,25 +36,55 @@ export const api = {
       body: JSON.stringify(expense)
     }).then(handleResponse),
 
-  uploadCsvFile: (file, replace = false) => {
+  // CSV Inspection (pre-upload preview and column detection)
+  inspectCsvFile: (file) => {
     const formData = new FormData();
     formData.append('file', file);
+    return fetch(`${API_BASE}/expenses/inspect`, {
+      method: 'POST',
+      body: formData
+    }).then(handleResponse);
+  },
+
+  inspectCsvText: (csvText, fileName = 'pasted_dataset.csv') => {
+    return fetch(`${API_BASE}/expenses/inspect`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ csv: csvText, fileName })
+    }).then(handleResponse);
+  },
+
+  // Dataset Upload with Column Mapping
+  uploadCsvFile: (file, options = {}) => {
+    const { columnMapping = null, replace = true, datasetName = '' } = options;
+    const formData = new FormData();
+    formData.append('file', file);
+    if (columnMapping) {
+      formData.append('columnMapping', JSON.stringify(columnMapping));
+    }
+    if (datasetName) {
+      formData.append('datasetName', datasetName);
+    }
     return fetch(`${API_BASE}/expenses/upload?replace=${replace}`, {
       method: 'POST',
       body: formData
     }).then(handleResponse);
   },
 
-  uploadCsvText: (csvText, replace = false) => {
-    return fetch(`${API_BASE}/expenses/upload`, {
+  uploadCsvText: (csvText, options = {}) => {
+    const { columnMapping = null, replace = true, datasetName = 'pasted_dataset.csv' } = options;
+    return fetch(`${API_BASE}/expenses/upload?replace=${replace}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ csv: csvText, replace })
+      body: JSON.stringify({ csv: csvText, columnMapping, replace, datasetName })
     }).then(handleResponse);
   },
 
   loadSampleData: () =>
     fetch(`${API_BASE}/expenses/sample`, { method: 'POST' }).then(handleResponse),
+
+  resetSampleData: () =>
+    fetch(`${API_BASE}/expenses/reset-sample`, { method: 'POST' }).then(handleResponse),
 
   clearExpenses: () =>
     fetch(`${API_BASE}/expenses`, { method: 'DELETE' }).then(handleResponse),

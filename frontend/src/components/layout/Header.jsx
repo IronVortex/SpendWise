@@ -6,12 +6,17 @@ import {
   CheckCircle2,
   AlertCircle,
   HelpCircle,
-  X
+  X,
+  FileSpreadsheet,
+  UploadCloud,
+  Database
 } from 'lucide-react';
 
 export default function Header({
   activeTab,
+  setActiveTab,
   bigDataStatus,
+  datasetInfo,
   onLoadSample,
   onClearData,
   loading
@@ -40,8 +45,8 @@ export default function Header({
       subtitle: 'Search, filter, inspect, and manually insert expense records'
     },
     upload: {
-      title: 'CSV Upload & Validation Engine',
-      subtitle: 'Batch import personal expenses with strict line-by-line format verification'
+      title: 'Kaggle Dataset Upload & Validation',
+      subtitle: 'Upload CSV, auto-detect or map columns, scrub currency & analyze actual data'
     },
     bigdata: {
       title: 'Big Data Streaming & MapReduce Pipeline',
@@ -55,19 +60,50 @@ export default function Header({
   };
 
   const isDemo = bigDataStatus?.mode !== 'BIG_DATA_CONNECTED';
+  const isSample = datasetInfo?.isSample !== false;
+  const datasetName = datasetInfo?.datasetName || 'personal_expenses_sample.csv';
+  const recordCount = datasetInfo?.totalRecords || 0;
 
   return (
     <header className="bg-white border-b border-slate-200 px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4 sticky top-0 z-20 shadow-sm">
       {/* Title & Subtitle */}
       <div>
-        <h2 className="text-xl font-bold text-slate-800 tracking-tight flex items-center gap-2">
-          {currentInfo.title}
-        </h2>
+        <div className="flex items-center gap-2.5">
+          <h2 className="text-xl font-bold text-slate-800 tracking-tight">
+            {currentInfo.title}
+          </h2>
+
+          {/* Active Dataset Badge */}
+          <div
+            className={`hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border ${
+              isSample
+                ? 'bg-slate-100 text-slate-700 border-slate-300'
+                : 'bg-emerald-50 text-emerald-800 border-emerald-300 shadow-sm'
+            }`}
+            title={`Active Dataset: ${datasetName} (${recordCount} records)`}
+          >
+            <FileSpreadsheet className={`w-3.5 h-3.5 ${isSample ? 'text-slate-500' : 'text-emerald-600'}`} />
+            <span className="max-w-[170px] truncate">{datasetName}</span>
+            <span className="text-[10px] font-normal px-1 rounded bg-black/5">
+              {isSample ? 'Sample' : 'Uploaded'}
+            </span>
+          </div>
+        </div>
         <p className="text-xs text-slate-500 mt-0.5">{currentInfo.subtitle}</p>
       </div>
 
       {/* Status & Quick Actions */}
       <div className="flex items-center flex-wrap gap-2.5">
+        {/* Upload Dataset Button */}
+        <button
+          onClick={() => setActiveTab('upload')}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm shadow-emerald-600/20 active:scale-95 transition-all"
+          title="Upload and analyze a Kaggle or custom CSV dataset"
+        >
+          <UploadCloud className="w-3.5 h-3.5" />
+          <span>Upload Dataset</span>
+        </button>
+
         {/* Big Data Status Pill */}
         <button
           onClick={() => setShowInfoModal(true)}
@@ -91,15 +127,15 @@ export default function Header({
           <HelpCircle className="w-3 h-3 text-slate-400 ml-0.5" />
         </button>
 
-        {/* Load Sample Data Button */}
+        {/* Reset to Sample Data Button */}
         <button
           onClick={onLoadSample}
           disabled={loading}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 active:scale-95 transition-all disabled:opacity-50"
-          title="Restore curated 5-month sample expense dataset"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-50 text-slate-700 border border-slate-200 hover:bg-slate-100 active:scale-95 transition-all disabled:opacity-50"
+          title="Reset to default curated 5-month sample dataset"
         >
           <RotateCcw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
-          <span>Load Sample Data</span>
+          <span>Reset Sample</span>
         </button>
 
         {/* Clear Data Button */}
@@ -107,7 +143,7 @@ export default function Header({
           onClick={onClearData}
           disabled={loading}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-50 text-slate-600 border border-slate-200 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 active:scale-95 transition-all disabled:opacity-50"
-          title="Clear all transactions to test custom CSV uploads"
+          title="Clear all transactions from memory and disk"
         >
           <Trash2 className="w-3.5 h-3.5" />
           <span>Clear Data</span>
@@ -146,7 +182,7 @@ export default function Header({
                 </p>
                 <p>
                   {isDemo
-                    ? 'External Apache Kafka and Hadoop HDFS services are currently offline. High-performance Node.js analytical engine is serving real-time calculations. Hadoop MapReduce outputs (part-r-00000) are verified via the Big Data Pipeline tab.'
+                    ? 'External Apache Kafka and Hadoop HDFS services are currently offline. High-performance Node.js analytical engine is serving real-time calculations. Uploaded datasets are automatically normalized and made available to Kafka and Hadoop MapReduce.'
                     : 'Successfully connected to live Kafka broker and Hadoop HDFS distributed cluster.'}
                 </p>
               </div>
