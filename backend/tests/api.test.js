@@ -74,8 +74,77 @@ test('API Endpoints: Expenses API', async (t) => {
   });
 });
 
+test('API Endpoints: Kaggle Dataset Inspection & Column Mapping', async (t) => {
+  await t.test('POST /api/expenses/inspect previews headers and suggests column mapping', async () => {
+    const csvContent = `Transaction Date,Expense Category,Transaction Amount,Merchant
+12/01/2026,Dining Out,1850.50,Barbeque Nation
+14/01/2026,Groceries,4200.00,Supermarket`;
+
+    const res = await fetch(`${baseUrl}/api/expenses/inspect`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ csv: csvContent, fileName: 'kaggle_card.csv' })
+    });
+
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.success, true);
+    assert.equal(data.totalRows, 2);
+    assert.equal(data.suggestedMapping.date, 'Transaction Date');
+    assert.equal(data.suggestedMapping.amount, 'Transaction Amount');
+  });
+
+  await t.test('POST /api/expenses/upload ingests Kaggle dataset with custom mapping', async () => {
+    const csvContent = `Txn_Date,Spend_Type,Cost_INR,Vendor_Note
+2026-01-10,Dining Out,1500,Dinner
+2026-02-10,Dining Out,3000,Dinner`;
+
+    const mapping = {
+      date: 'Txn_Date',
+      category: 'Spend_Type',
+      amount: 'Cost_INR',
+      description: 'Vendor_Note'
+    };
+
+    const res = await fetch(`${baseUrl}/api/expenses/upload`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        csv: csvContent,
+        columnMapping: mapping,
+        datasetName: 'custom_kaggle_upload.csv',
+        replace: true
+      })
+    });
+
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.success, true);
+    assert.equal(data.datasetInfo.datasetName, 'custom_kaggle_upload.csv');
+    assert.equal(data.datasetInfo.isSample, false);
+    assert.equal(data.stats.acceptedRows, 2);
+  });
+
+  await t.test('GET /api/expenses/dataset-info returns active dataset metadata', async () => {
+    const res = await fetch(`${baseUrl}/api/expenses/dataset-info`);
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.success, true);
+    assert.equal(data.data.datasetName, 'custom_kaggle_upload.csv');
+    assert.equal(data.data.isSample, false);
+  });
+
+  await t.test('POST /api/expenses/sample restores original sample data', async () => {
+    const res = await fetch(`${baseUrl}/api/expenses/sample`, { method: 'POST' });
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.success, true);
+    assert.equal(data.datasetInfo.isSample, true);
+  });
+});
+
 test('API Endpoints: Analytics & Alerts API', async (t) => {
-  await t.test('GET /api/analytics/overview returns financial KPIs', async () => {
+  await t.test('GET /api/analytics/overview returns financial KPIs & datasetInfo', async () => {
     const res = await fetch(`${baseUrl}/api/analytics/overview`);
     assert.equal(res.status, 200);
     const data = await res.json();
@@ -83,6 +152,7 @@ test('API Endpoints: Analytics & Alerts API', async (t) => {
     assert.ok(typeof data.data.totalSpent === 'number');
     assert.ok(data.data.transactionCount > 0);
     assert.ok(Array.isArray(data.data.trendData));
+    assert.ok(data.data.datasetInfo);
   });
 
   await t.test('GET /api/analytics/alerts returns strictly >25% alerts', async () => {
@@ -92,7 +162,6 @@ test('API Endpoints: Analytics & Alerts API', async (t) => {
     assert.equal(data.success, true);
     assert.equal(data.data.thresholdPercent, 25.0);
     assert.ok(Array.isArray(data.data.alerts));
-    // Verify each alert strictly exceeds 25%
     for (const alert of data.data.alerts) {
       assert.ok(alert.percentageIncrease > 25.0);
       assert.ok(alert.recommendation.length > 0);
