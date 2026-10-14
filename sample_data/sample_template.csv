@@ -1,0 +1,9 @@
+date,category,amount,description,payment_method
+2026-06-01,Groceries,3500.00,Weekly grocery shopping,UPI
+2026-06-02,Rent & Housing,22000.00,Monthly rent payment,Net Banking
+2026-06-05,Dining Out,1500.00,Dinner with friends,Credit Card
+2026-06-08,Utilities & Bills,1800.00,Electricity and broadband bill,UPI
+2026-06-12,Transportation,1200.00,Fuel and metro commute,UPI
+2026-06-15,Entertainment,999.00,Streaming subscription,Credit Card
+2026-06-20,Shopping,2400.00,Clothing and books,Debit Card
+2026-06-25,Healthcare,850.00,Routine medicine,Cash

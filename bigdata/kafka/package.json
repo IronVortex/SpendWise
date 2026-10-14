@@ -1,0 +1,14 @@
+{
+  "name": "expense-kafka-streaming",
+  "version": "1.0.0",
+  "description": "Kafka Producer and Consumer for Expense Streaming to HDFS",
+  "main": "producer.js",
+  "scripts": {
+    "start-producer": "node producer.js",
+    "start-consumer": "node consumer.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "kafkajs": "^2.2.4"
+  }
+}
