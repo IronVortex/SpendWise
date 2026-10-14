@@ -1,57 +1,103 @@
 /**
- * API Client for Personal Expense Pattern Analysis Backend
+ * SpendSense API Client
+ * Manages HTTP communication with the Node.js / Express backend.
+ * Automatically attaches JWT Bearer token from localStorage for protected endpoints.
  */
 
 const API_BASE = '/api';
 
-async function handleResponse(res) {
-  const data = await res.json();
+function getStoredToken() {
+  return localStorage.getItem('spendsense_token');
+}
+
+export function setStoredToken(token) {
+  if (token) {
+    localStorage.setItem('spendsense_token', token);
+  } else {
+    localStorage.removeItem('spendsense_token');
+  }
+}
+
+async function request(endpoint, options = {}) {
+  const token = getStoredToken();
+  const headers = {
+    ...options.headers
+  };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  // If body is plain object and not FormData, stringify
+  if (options.body && !(options.body instanceof FormData) && typeof options.body === 'object') {
+    headers['Content-Type'] = 'application/json';
+    options.body = JSON.stringify(options.body);
+  }
+
+  const res = await fetch(`${API_BASE}${endpoint}`, {
+    ...options,
+    headers
+  });
+
+  const data = await res.json().catch(() => ({}));
   if (!res.ok) {
-    throw new Error(data.message || (data.errors ? data.errors.join(', ') : 'API Request Failed'));
+    throw new Error(data.message || (data.errors ? data.errors.join(', ') : `HTTP ${res.status} Request Failed`));
   }
   return data;
 }
 
 export const api = {
+  // Authentication
+  login: (credentials) =>
+    request('/auth/login', { method: 'POST', body: credentials }),
+
+  register: (userData) =>
+    request('/auth/register', { method: 'POST', body: userData }),
+
+  getMe: () =>
+    request('/auth/me', { method: 'GET' }),
+
+  forgotPassword: (data) =>
+    request('/auth/forgot-password', { method: 'POST', body: data }),
+
+  resetPassword: (data) =>
+    request('/auth/reset-password', { method: 'POST', body: data }),
+
+  updateProfile: (profileData) =>
+    request('/auth/profile', { method: 'PUT', body: profileData }),
+
   // Health
-  getHealth: () => fetch(`${API_BASE}/health`).then(handleResponse),
+  getHealth: () => request('/health', { method: 'GET' }),
 
   // Analytics
-  getOverview: () => fetch(`${API_BASE}/analytics/overview`).then(handleResponse),
-  getTrends: () => fetch(`${API_BASE}/analytics/trends`).then(handleResponse),
-  getMonthlyComparison: () => fetch(`${API_BASE}/analytics/monthly-comparison`).then(handleResponse),
-  getAlerts: () => fetch(`${API_BASE}/analytics/alerts`).then(handleResponse),
+  getOverview: () => request('/analytics/overview', { method: 'GET' }),
+  getTrends: () => request('/analytics/trends', { method: 'GET' }),
+  getMonthlyComparison: () => request('/analytics/monthly-comparison', { method: 'GET' }),
+  getAlerts: () => request('/analytics/alerts', { method: 'GET' }),
 
   // Expenses CRUD & Dataset Management
   getExpenses: (params = {}) => {
     const query = new URLSearchParams(params).toString();
-    return fetch(`${API_BASE}/expenses?${query}`).then(handleResponse);
+    return request(`/expenses?${query}`, { method: 'GET' });
   },
-  getDatasetInfo: () => fetch(`${API_BASE}/expenses/dataset-info`).then(handleResponse),
+
+  getDatasetInfo: () => request('/expenses/dataset-info', { method: 'GET' }),
 
   addExpense: (expense) =>
-    fetch(`${API_BASE}/expenses`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(expense)
-    }).then(handleResponse),
+    request('/expenses', { method: 'POST', body: expense }),
 
   // CSV Inspection (pre-upload preview and column detection)
   inspectCsvFile: (file) => {
     const formData = new FormData();
     formData.append('file', file);
-    return fetch(`${API_BASE}/expenses/inspect`, {
-      method: 'POST',
-      body: formData
-    }).then(handleResponse);
+    return request('/expenses/inspect', { method: 'POST', body: formData });
   },
 
   inspectCsvText: (csvText, fileName = 'pasted_dataset.csv') => {
-    return fetch(`${API_BASE}/expenses/inspect`, {
+    return request('/expenses/inspect', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ csv: csvText, fileName })
-    }).then(handleResponse);
+      body: { csv: csvText, fileName }
+    });
   },
 
   // Dataset Upload with Column Mapping
@@ -65,38 +111,36 @@ export const api = {
     if (datasetName) {
       formData.append('datasetName', datasetName);
     }
-    return fetch(`${API_BASE}/expenses/upload?replace=${replace}`, {
+    return request(`/expenses/upload?replace=${replace}`, {
       method: 'POST',
       body: formData
-    }).then(handleResponse);
+    });
   },
 
   uploadCsvText: (csvText, options = {}) => {
     const { columnMapping = null, replace = true, datasetName = 'pasted_dataset.csv' } = options;
-    return fetch(`${API_BASE}/expenses/upload?replace=${replace}`, {
+    return request(`/expenses/upload?replace=${replace}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ csv: csvText, columnMapping, replace, datasetName })
-    }).then(handleResponse);
+      body: { csv: csvText, columnMapping, replace, datasetName }
+    });
   },
 
   loadSampleData: () =>
-    fetch(`${API_BASE}/expenses/sample`, { method: 'POST' }).then(handleResponse),
+    request('/expenses/sample', { method: 'POST' }),
 
   resetSampleData: () =>
-    fetch(`${API_BASE}/expenses/reset-sample`, { method: 'POST' }).then(handleResponse),
+    request('/expenses/reset-sample', { method: 'POST' }),
 
   clearExpenses: () =>
-    fetch(`${API_BASE}/expenses`, { method: 'DELETE' }).then(handleResponse),
+    request('/expenses', { method: 'DELETE' }),
 
   // Big Data Pipeline
-  getBigDataStatus: () => fetch(`${API_BASE}/bigdata/status`).then(handleResponse),
+  getBigDataStatus: () => request('/bigdata/status', { method: 'GET' }),
+
   streamToKafka: (transactions = null) =>
-    fetch(`${API_BASE}/bigdata/stream`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ transactions })
-    }).then(handleResponse),
-  getStreamLogs: () => fetch(`${API_BASE}/bigdata/stream/logs`).then(handleResponse),
-  getMapReduceResults: () => fetch(`${API_BASE}/bigdata/mapreduce-output`).then(handleResponse)
+    request('/bigdata/stream', { method: 'POST', body: { transactions } }),
+
+  getStreamLogs: () => request('/bigdata/stream/logs', { method: 'GET' }),
+
+  getMapReduceResults: () => request('/bigdata/mapreduce-output', { method: 'GET' })
 };

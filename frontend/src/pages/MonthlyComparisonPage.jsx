@@ -27,9 +27,9 @@ export default function MonthlyComparisonPage() {
 
   if (loading) {
     return (
-      <div className="p-8 space-y-4 animate-pulse">
-        <div className="h-12 bg-slate-200 rounded-xl" />
-        <div className="h-96 bg-slate-200 rounded-xl" />
+      <div className="space-y-4 animate-pulse">
+        <div className="h-12 bg-slate-900 border border-slate-800 rounded-xl" />
+        <div className="h-96 bg-slate-900 border border-slate-800 rounded-xl" />
       </div>
     );
   }
@@ -41,76 +41,76 @@ export default function MonthlyComparisonPage() {
   );
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6 max-w-7xl mx-auto">
       {/* Information Banner */}
-      <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 text-blue-900 text-xs flex items-start gap-3">
-        <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+      <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 text-xs flex items-start gap-3 shadow-sm">
+        <Info className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
         <div className="leading-relaxed">
-          <p className="font-bold">Month-on-Month (MoM) Consecutive Comparison Matrix</p>
-          <p className="text-blue-700 mt-0.5">
+          <p className="font-semibold text-white">Month-on-Month (MoM) Consecutive Comparison Matrix</p>
+          <p className="text-slate-400 mt-0.5">
             Evaluates chronological spending shifts between consecutive months. Cells highlighted with{' '}
-            <span className="font-bold text-rose-700 bg-rose-100 px-1.5 py-0.5 rounded">
-              red alert badges
+            <span className="font-bold text-rose-300 bg-rose-950/80 px-1.5 py-0.5 rounded border border-rose-800">
+              alert badges
             </span>{' '}
-            indicate an expenditure surge strictly exceeding the project's <span className="font-bold">25.0% threshold</span>.
+            indicate an expenditure surge strictly exceeding the project's <span className="font-bold text-white">25.0% threshold</span>.
           </p>
         </div>
       </div>
 
       {/* Control bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-900 p-4 rounded-xl border border-slate-800 shadow-sm">
         <div className="relative w-full sm:w-72">
-          <Search className="w-4 h-4 absolute left-3 top-2.5 text-slate-400" />
+          <Search className="w-4 h-4 absolute left-3 top-2.5 text-slate-500" />
           <input
             type="text"
             placeholder="Filter category..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+            className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
           />
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-slate-500">
-          <span className="flex items-center gap-1">
+        <div className="flex items-center gap-3 text-xs text-slate-400">
+          <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-rose-500" /> &gt; 25% Alert
           </span>
-          <span className="mx-1">•</span>
-          <span className="flex items-center gap-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500" /> &lt;= 25% Increase
+          <span className="text-slate-600">•</span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-400" /> &le; 25% Increase
           </span>
-          <span className="mx-1">•</span>
-          <span className="flex items-center gap-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Spending Drop
+          <span className="text-slate-600">•</span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" /> Spending Drop
           </span>
         </div>
       </div>
 
       {/* Comparison Table */}
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+      <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
-            <thead className="bg-slate-900 text-white text-[11px] uppercase tracking-wider">
+            <thead className="bg-slate-950 text-slate-300 text-[11px] uppercase tracking-wider border-b border-slate-800">
               <tr>
-                <th className="py-3.5 px-4 sticky left-0 bg-slate-900 z-10 min-w-[180px]">
+                <th className="py-3.5 px-4 sticky left-0 bg-slate-950 z-10 min-w-[180px]">
                   Category
                 </th>
                 {months.map((m, idx) => (
                   <th key={m} className="py-3.5 px-4 text-right min-w-[150px]">
-                    <div>{formatMonthName(m)}</div>
-                    <div className="text-[10px] text-slate-400 font-normal">
+                    <div className="text-white">{formatMonthName(m)}</div>
+                    <div className="text-[10px] text-slate-500 font-normal">
                       {idx === 0 ? 'Baseline' : `vs ${formatMonthName(months[idx - 1])}`}
                     </div>
                   </th>
                 ))}
-                <th className="py-3.5 px-4 text-right min-w-[120px]">Total Outlay</th>
+                <th className="py-3.5 px-4 text-right min-w-[120px] text-emerald-400">Total Outlay</th>
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-800/80">
               {filteredMatrix.map((row) => (
-                <tr key={row.category} className="hover:bg-slate-50/80 transition-colors">
+                <tr key={row.category} className="hover:bg-slate-800/40 transition-colors">
                   {/* Category Name Sticky Column */}
-                  <td className="py-3 px-4 font-semibold text-slate-800 sticky left-0 bg-white shadow-sm flex items-center gap-2">
+                  <td className="py-3 px-4 font-semibold text-slate-200 sticky left-0 bg-slate-900 shadow-sm flex items-center gap-2">
                     <span
                       className="w-2.5 h-2.5 rounded-full shrink-0"
                       style={{ backgroundColor: CATEGORY_COLORS[row.category] || '#64748b' }}
@@ -121,7 +121,7 @@ export default function MonthlyComparisonPage() {
                   {/* Monthly Values */}
                   {months.map((m, idx) => {
                     const cell = row.monthly[m];
-                    if (!cell) return <td key={m} className="py-3 px-4 text-right">—</td>;
+                    if (!cell) return <td key={m} className="py-3 px-4 text-right text-slate-600">—</td>;
 
                     const isFirstMonth = idx === 0;
                     const pct = cell.percentChange;
@@ -131,38 +131,38 @@ export default function MonthlyComparisonPage() {
                       <td
                         key={m}
                         className={`py-3 px-4 text-right ${
-                          isAlert ? 'bg-rose-50/70 border-x border-rose-100' : ''
+                          isAlert ? 'bg-rose-950/30 border-x border-rose-900/40' : ''
                         }`}
                       >
-                        <div className="font-mono font-bold text-slate-800 text-[13px]">
+                        <div className="font-mono font-bold text-slate-200 text-[13px]">
                           {formatINR(cell.amount)}
                         </div>
 
                         {!isFirstMonth && pct !== null && (
                           <div className="mt-1 flex items-center justify-end gap-1">
                             {isAlert ? (
-                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-700 border border-rose-300">
+                              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-rose-300 border border-rose-800">
                                 <AlertTriangle className="w-2.5 h-2.5" />
                                 +{pct}% (ALERT)
                               </span>
                             ) : pct > 0 ? (
-                              <span className="inline-flex items-center text-[10px] text-amber-600 font-medium">
+                              <span className="inline-flex items-center text-[10px] text-amber-400 font-medium">
                                 <ArrowUpRight className="w-2.5 h-2.5" />
                                 +{pct}%
                               </span>
                             ) : pct < 0 ? (
-                              <span className="inline-flex items-center text-[10px] text-emerald-600 font-medium">
+                              <span className="inline-flex items-center text-[10px] text-emerald-400 font-medium">
                                 <ArrowDownRight className="w-2.5 h-2.5" />
                                 {pct}%
                               </span>
                             ) : (
-                              <span className="text-[10px] text-slate-400">0.0%</span>
+                              <span className="text-[10px] text-slate-500">0.0%</span>
                             )}
                           </div>
                         )}
 
                         {isFirstMonth && (
-                          <div className="text-[10px] text-slate-400 mt-1 italic">
+                          <div className="text-[10px] text-slate-500 mt-1 italic">
                             Baseline
                           </div>
                         )}
@@ -171,7 +171,7 @@ export default function MonthlyComparisonPage() {
                   })}
 
                   {/* All-time Total Column */}
-                  <td className="py-3 px-4 text-right font-mono font-extrabold text-slate-900 bg-slate-50/50">
+                  <td className="py-3 px-4 text-right font-mono font-extrabold text-white bg-slate-950/40">
                     {formatINR(row.total)}
                   </td>
                 </tr>
@@ -179,17 +179,17 @@ export default function MonthlyComparisonPage() {
             </tbody>
 
             {/* Total Footer Row */}
-            <tfoot className="bg-slate-100/80 font-bold border-t-2 border-slate-300 text-slate-800">
+            <tfoot className="bg-slate-950 font-bold border-t-2 border-slate-700 text-slate-200">
               <tr>
-                <td className="py-3.5 px-4 sticky left-0 bg-slate-100 uppercase tracking-wider text-[11px]">
+                <td className="py-3.5 px-4 sticky left-0 bg-slate-950 uppercase tracking-wider text-[11px]">
                   Total Monthly Expenditure
                 </td>
                 {months.map((m) => (
-                  <td key={m} className="py-3.5 px-4 text-right font-mono font-extrabold text-emerald-700">
+                  <td key={m} className="py-3.5 px-4 text-right font-mono font-extrabold text-emerald-400">
                     {formatINR(monthlyTotals[m] || 0)}
                   </td>
                 ))}
-                <td className="py-3.5 px-4 text-right font-mono font-extrabold text-emerald-800 bg-slate-200/60">
+                <td className="py-3.5 px-4 text-right font-mono font-extrabold text-emerald-300 bg-slate-950">
                   {formatINR(Object.values(monthlyTotals).reduce((a, b) => a + b, 0))}
                 </td>
               </tr>

@@ -43,7 +43,8 @@ public class ExpenseMapper extends Mapper<LongWritable, Text, Text, Text> {
         try {
             String dateStr = tokens[0].trim().replace("\"", "");
             String category = tokens[1].trim().replace("\"", "");
-            String amountStr = tokens[2].trim().replaceAll("[₹$€£,\\s]", "").replace("\"", "");
+            // Clean amount: strip currency symbols, commas, quotes and whitespace
+            String amountStr = tokens[2].trim().replaceAll("[\\u20B9\\$\\u20AC\\u00A3,\\s]", "").replace("\"", "");
 
             // Extract month YYYY-MM
             if (dateStr.length() < 7 || !dateStr.contains("-")) {

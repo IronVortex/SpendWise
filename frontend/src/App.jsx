@@ -1,6 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import Sidebar from './components/layout/Sidebar';
-import Header from './components/layout/Header';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { DataProvider, useData } from './context/DataContext';
+import ProtectedRoute from './components/common/ProtectedRoute';
+import AppLayout from './components/layout/AppLayout';
+
+// Public Pages
+import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+
+// Authenticated Pages
 import DashboardPage from './pages/DashboardPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import MonthlyComparisonPage from './pages/MonthlyComparisonPage';
@@ -8,135 +19,81 @@ import AlertsPage from './pages/AlertsPage';
 import TransactionsPage from './pages/TransactionsPage';
 import UploadPage from './pages/UploadPage';
 import BigDataPipelinePage from './pages/BigDataPipelinePage';
-import { api } from './services/api';
+import ReportsPage from './pages/ReportsPage';
+import SettingsPage from './pages/SettingsPage';
+
+// Adapter wrappers to bind DataContext into subpages that receive props
+function DashboardWrapper() {
+  const { overview, loading } = useData();
+  return <DashboardPage overview={overview} loading={loading} />;
+}
+
+function TransactionsWrapper() {
+  const { refreshData } = useData();
+  return <TransactionsPage onDataModified={refreshData} />;
+}
+
+function UploadWrapper() {
+  const { overview, loadSampleData, refreshData, showToast } = useData();
+  return (
+    <UploadPage
+      datasetInfo={overview?.datasetInfo}
+      onLoadSample={loadSampleData}
+      onUploadSuccess={() => {
+        showToast('Kaggle dataset imported, mapped & analyzed successfully!');
+        refreshData();
+      }}
+    />
+  );
+}
+
+function BigDataWrapper() {
+  const { bigDataStatus, refreshData } = useData();
+  return (
+    <BigDataPipelinePage
+      bigDataStatus={bigDataStatus}
+      onRefreshStatus={refreshData}
+    />
+  );
+}
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const [overview, setOverview] = useState(null);
-  const [bigDataStatus, setBigDataStatus] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [toastMessage, setToastMessage] = useState(null);
-
-  function showToast(msg) {
-    setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 3500);
-  }
-
-  async function refreshData() {
-    try {
-      setLoading(true);
-      const [overviewRes, statusRes] = await Promise.all([
-        api.getOverview(),
-        api.getBigDataStatus()
-      ]);
-
-      if (overviewRes.success) setOverview(overviewRes.data);
-      if (statusRes.success) setBigDataStatus(statusRes);
-    } catch (err) {
-      console.error('Failed to fetch app data:', err);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    refreshData();
-  }, []);
-
-  async function handleLoadSample() {
-    try {
-      const res = await api.loadSampleData();
-      if (res.success) {
-        showToast(`Reset to sample dataset: ${res.count} transactions across 5 months loaded!`);
-        await refreshData();
-      }
-    } catch (err) {
-      showToast('Error loading sample data: ' + err.message);
-    }
-  }
-
-  async function handleClearData() {
-    if (window.confirm('Are you sure you want to clear all transactions?')) {
-      try {
-        const res = await api.clearExpenses();
-        if (res.success) {
-          showToast(res.message);
-          await refreshData();
-        }
-      } catch (err) {
-        showToast('Error clearing data: ' + err.message);
-      }
-    }
-  }
-
   return (
-    <div className="flex h-screen bg-slate-50 overflow-hidden font-sans">
-      {/* Toast Notification */}
-      {toastMessage && (
-        <div className="fixed bottom-5 right-5 z-50 bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-2xl border border-slate-700 animate-in slide-in-from-bottom duration-200">
-          {toastMessage}
-        </div>
-      )}
+    <BrowserRouter>
+      <AuthProvider>
+        <DataProvider>
+          <Routes>
+            {/* Public Marketing & Authentication Routes */}
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
-      {/* Left Sidebar */}
-      <Sidebar
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        alertCount={overview?.alertCount || 0}
-      />
+            {/* Authenticated Dashboard Shell */}
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="/dashboard" element={<DashboardWrapper />} />
+              <Route path="/analytics" element={<AnalyticsPage />} />
+              <Route path="/comparison" element={<MonthlyComparisonPage />} />
+              <Route path="/alerts" element={<AlertsPage />} />
+              <Route path="/transactions" element={<TransactionsWrapper />} />
+              <Route path="/upload" element={<UploadWrapper />} />
+              <Route path="/datasets" element={<UploadWrapper />} />
+              <Route path="/bigdata" element={<BigDataWrapper />} />
+              <Route path="/reports" element={<ReportsPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+            </Route>
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col h-screen overflow-hidden">
-        <Header
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          bigDataStatus={bigDataStatus}
-          datasetInfo={overview?.datasetInfo}
-          onLoadSample={handleLoadSample}
-          onClearData={handleClearData}
-          loading={loading}
-        />
-
-        <main className="flex-1 overflow-y-auto bg-slate-50/60">
-          {activeTab === 'dashboard' && (
-            <DashboardPage
-              overview={overview}
-              loading={loading}
-              setActiveTab={setActiveTab}
-              onLoadSample={handleLoadSample}
-            />
-          )}
-
-          {activeTab === 'analytics' && <AnalyticsPage />}
-
-          {activeTab === 'comparison' && <MonthlyComparisonPage />}
-
-          {activeTab === 'alerts' && <AlertsPage />}
-
-          {activeTab === 'transactions' && (
-            <TransactionsPage onDataModified={refreshData} />
-          )}
-
-          {activeTab === 'upload' && (
-            <UploadPage
-              datasetInfo={overview?.datasetInfo}
-              setActiveTab={setActiveTab}
-              onLoadSample={handleLoadSample}
-              onUploadSuccess={() => {
-                showToast('Kaggle dataset imported, mapped & analyzed successfully!');
-                refreshData();
-              }}
-            />
-          )}
-
-          {activeTab === 'bigdata' && (
-            <BigDataPipelinePage
-              bigDataStatus={bigDataStatus}
-              onRefreshStatus={refreshData}
-            />
-          )}
-        </main>
-      </div>
-    </div>
+            {/* Fallback Catch-all */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </DataProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }

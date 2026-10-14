@@ -7,6 +7,9 @@ module.exports = {
   port: process.env.PORT || 5000,
   env: process.env.NODE_ENV || 'development',
   
+  // Authentication
+  jwtSecret: process.env.JWT_SECRET || 'spendsense_super_secure_jwt_secret_key_2026',
+  
   // Big Data Processing Threshold
   budgetAlertThresholdPercent: 25.0, // strictly > 25% triggers an alert
   

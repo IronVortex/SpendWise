@@ -1,6 +1,6 @@
-# Personal Expense Pattern Analysis
+# SpendSense — Personal Expense Pattern Analysis
 
-A full-stack, distributed **Big Data Analytics (BDA) College Mini-Project** designed to ingest, validate, store, and analyze real personal expenses downloaded from **Kaggle** or created manually across chronological billing cycles. The system computes category-wise monthly spending trends and triggers **budgeting alerts whenever spending in any category surges by strictly more than 25.0% compared with the previous month**.
+A production-grade, distributed **Big Data Analytics (BDA) FinTech Web Application** designed to ingest, validate, store, and analyze real personal expenses downloaded from **Kaggle** or custom sources. The system computes category-wise monthly spending trends, generates executive financial reports, and triggers **budgeting alerts whenever spending in any category surges by strictly more than 25.0% compared with the previous month**.
 
 ---
 

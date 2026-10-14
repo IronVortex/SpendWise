@@ -1,7 +1,7 @@
 {
   "datasetName": "personal_expenses_sample.csv",
   "isSample": true,
-  "uploadedAt": "2026-10-14T13:29:19.956Z",
+  "uploadedAt": "2026-10-14T14:43:53.372Z",
   "stats": {
     "totalRows": 61,
     "acceptedRows": 61,
@@ -19,7 +19,7 @@
   "totalRecords": 61,
   "expenses": [
     {
-      "id": "exp_1791984559955_3hxzi",
+      "id": "exp_1791989033368_sx24f",
       "date": "2026-01-02",
       "monthKey": "2026-01",
       "category": "Rent & Housing",
@@ -28,7 +28,7 @@
       "paymentMethod": "Net Banking"
     },
     {
-      "id": "exp_1791984559955_3fbia",
+      "id": "exp_1791989033369_lpzzi",
       "date": "2026-01-03",
       "monthKey": "2026-01",
       "category": "Groceries",
@@ -37,7 +37,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_lqxbj",
+      "id": "exp_1791989033370_6ible",
       "date": "2026-01-05",
       "monthKey": "2026-01",
       "category": "Utilities & Bills",
@@ -46,7 +46,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_fbxbc",
+      "id": "exp_1791989033370_21uev",
       "date": "2026-01-07",
       "monthKey": "2026-01",
       "category": "Dining Out",
@@ -55,7 +55,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559955_ds2fm",
+      "id": "exp_1791989033370_gt9fz",
       "date": "2026-01-10",
       "monthKey": "2026-01",
       "category": "Transportation",
@@ -64,7 +64,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_rozcv",
+      "id": "exp_1791989033370_by0es",
       "date": "2026-01-12",
       "monthKey": "2026-01",
       "category": "Groceries",
@@ -73,7 +73,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_20026",
+      "id": "exp_1791989033370_60omx",
       "date": "2026-01-15",
       "monthKey": "2026-01",
       "category": "Entertainment",
@@ -82,7 +82,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559955_dq4xt",
+      "id": "exp_1791989033370_0oqg1",
       "date": "2026-01-18",
       "monthKey": "2026-01",
       "category": "Dining Out",
@@ -91,7 +91,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_rr65u",
+      "id": "exp_1791989033370_t22nu",
       "date": "2026-01-20",
       "monthKey": "2026-01",
       "category": "Shopping",
@@ -100,7 +100,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559955_90pj0",
+      "id": "exp_1791989033370_zrsq1",
       "date": "2026-01-22",
       "monthKey": "2026-01",
       "category": "Groceries",
@@ -109,7 +109,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_rjrm5",
+      "id": "exp_1791989033371_w51pg",
       "date": "2026-01-25",
       "monthKey": "2026-01",
       "category": "Healthcare",
@@ -118,7 +118,7 @@
       "paymentMethod": "Cash"
     },
     {
-      "id": "exp_1791984559955_trigi",
+      "id": "exp_1791989033371_yc830",
       "date": "2026-01-27",
       "monthKey": "2026-01",
       "category": "Dining Out",
@@ -127,7 +127,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_z9lj6",
+      "id": "exp_1791989033371_5e33j",
       "date": "2026-01-28",
       "monthKey": "2026-01",
       "category": "Utilities & Bills",
@@ -136,7 +136,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_rurqy",
+      "id": "exp_1791989033371_4lrda",
       "date": "2026-01-30",
       "monthKey": "2026-01",
       "category": "Shopping",
@@ -145,7 +145,7 @@
       "paymentMethod": "Debit Card"
     },
     {
-      "id": "exp_1791984559955_b4l08",
+      "id": "exp_1791989033371_656vc",
       "date": "2026-02-02",
       "monthKey": "2026-02",
       "category": "Rent & Housing",
@@ -154,7 +154,7 @@
       "paymentMethod": "Net Banking"
     },
     {
-      "id": "exp_1791984559955_mrk30",
+      "id": "exp_1791989033371_85myg",
       "date": "2026-02-04",
       "monthKey": "2026-02",
       "category": "Groceries",
@@ -163,7 +163,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_dj9q6",
+      "id": "exp_1791989033371_ibm43",
       "date": "2026-02-06",
       "monthKey": "2026-02",
       "category": "Utilities & Bills",
@@ -172,7 +172,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_kvth0",
+      "id": "exp_1791989033371_74dwh",
       "date": "2026-02-08",
       "monthKey": "2026-02",
       "category": "Dining Out",
@@ -181,7 +181,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559955_yv7b6",
+      "id": "exp_1791989033371_w5a7a",
       "date": "2026-02-11",
       "monthKey": "2026-02",
       "category": "Transportation",
@@ -190,7 +190,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_g9apy",
+      "id": "exp_1791989033371_uafxx",
       "date": "2026-02-14",
       "monthKey": "2026-02",
       "category": "Dining Out",
@@ -199,7 +199,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559955_sfzq2",
+      "id": "exp_1791989033371_1z3nk",
       "date": "2026-02-16",
       "monthKey": "2026-02",
       "category": "Entertainment",
@@ -208,7 +208,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_fcqj4",
+      "id": "exp_1791989033371_is9v7",
       "date": "2026-02-19",
       "monthKey": "2026-02",
       "category": "Dining Out",
@@ -217,7 +217,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_vg00r",
+      "id": "exp_1791989033371_07ylj",
       "date": "2026-02-21",
       "monthKey": "2026-02",
       "category": "Groceries",
@@ -226,7 +226,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559955_jg59v",
+      "id": "exp_1791989033371_iks76",
       "date": "2026-02-24",
       "monthKey": "2026-02",
       "category": "Healthcare",
@@ -235,7 +235,7 @@
       "paymentMethod": "Debit Card"
     },
     {
-      "id": "exp_1791984559955_bls73",
+      "id": "exp_1791989033371_29usk",
       "date": "2026-02-26",
       "monthKey": "2026-02",
       "category": "Utilities & Bills",
@@ -244,7 +244,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_t8luf",
+      "id": "exp_1791989033371_c6s6q",
       "date": "2026-02-27",
       "monthKey": "2026-02",
       "category": "Shopping",
@@ -253,7 +253,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559955_va4yc",
+      "id": "exp_1791989033372_ve5qw",
       "date": "2026-03-02",
       "monthKey": "2026-03",
       "category": "Rent & Housing",
@@ -262,7 +262,7 @@
       "paymentMethod": "Net Banking"
     },
     {
-      "id": "exp_1791984559955_jf0ti",
+      "id": "exp_1791989033372_fmry7",
       "date": "2026-03-04",
       "monthKey": "2026-03",
       "category": "Groceries",
@@ -271,7 +271,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_w9669",
+      "id": "exp_1791989033372_3qwii",
       "date": "2026-03-07",
       "monthKey": "2026-03",
       "category": "Dining Out",
@@ -280,7 +280,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559955_f509u",
+      "id": "exp_1791989033372_8ouzk",
       "date": "2026-03-09",
       "monthKey": "2026-03",
       "category": "Shopping",
@@ -289,7 +289,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559955_zey7i",
+      "id": "exp_1791989033372_1ow48",
       "date": "2026-03-12",
       "monthKey": "2026-03",
       "category": "Utilities & Bills",
@@ -298,7 +298,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_796mp",
+      "id": "exp_1791989033372_9z3as",
       "date": "2026-03-14",
       "monthKey": "2026-03",
       "category": "Shopping",
@@ -307,7 +307,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559955_37ecg",
+      "id": "exp_1791989033372_9qdbr",
       "date": "2026-03-17",
       "monthKey": "2026-03",
       "category": "Transportation",
@@ -316,7 +316,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_qaazd",
+      "id": "exp_1791989033372_f16p5",
       "date": "2026-03-20",
       "monthKey": "2026-03",
       "category": "Shopping",
@@ -325,7 +325,7 @@
       "paymentMethod": "Debit Card"
     },
     {
-      "id": "exp_1791984559955_5o9t3",
+      "id": "exp_1791989033372_4l7lw",
       "date": "2026-03-22",
       "monthKey": "2026-03",
       "category": "Groceries",
@@ -334,7 +334,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_pwcyw",
+      "id": "exp_1791989033372_ddfa4",
       "date": "2026-03-25",
       "monthKey": "2026-03",
       "category": "Entertainment",
@@ -343,7 +343,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_6do32",
+      "id": "exp_1791989033372_5ogaq",
       "date": "2026-03-27",
       "monthKey": "2026-03",
       "category": "Dining Out",
@@ -352,7 +352,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_5n2ml",
+      "id": "exp_1791989033372_1g9ri",
       "date": "2026-03-29",
       "monthKey": "2026-03",
       "category": "Utilities & Bills",
@@ -361,7 +361,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_xdnsa",
+      "id": "exp_1791989033372_teeio",
       "date": "2026-03-30",
       "monthKey": "2026-03",
       "category": "Healthcare",
@@ -370,7 +370,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_efnmx",
+      "id": "exp_1791989033372_qlpd6",
       "date": "2026-04-02",
       "monthKey": "2026-04",
       "category": "Rent & Housing",
@@ -379,7 +379,7 @@
       "paymentMethod": "Net Banking"
     },
     {
-      "id": "exp_1791984559955_elx8c",
+      "id": "exp_1791989033372_4lhey",
       "date": "2026-04-04",
       "monthKey": "2026-04",
       "category": "Groceries",
@@ -388,7 +388,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_g64s7",
+      "id": "exp_1791989033372_yf2a9",
       "date": "2026-04-06",
       "monthKey": "2026-04",
       "category": "Utilities & Bills",
@@ -397,7 +397,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559955_pytpe",
+      "id": "exp_1791989033372_n5ibg",
       "date": "2026-04-09",
       "monthKey": "2026-04",
       "category": "Dining Out",
@@ -406,7 +406,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559956_s7il7",
+      "id": "exp_1791989033372_ljo6d",
       "date": "2026-04-12",
       "monthKey": "2026-04",
       "category": "Utilities & Bills",
@@ -415,7 +415,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559956_zfrax",
+      "id": "exp_1791989033372_9krku",
       "date": "2026-04-15",
       "monthKey": "2026-04",
       "category": "Transportation",
@@ -424,7 +424,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559956_wx6jd",
+      "id": "exp_1791989033372_zexjm",
       "date": "2026-04-18",
       "monthKey": "2026-04",
       "category": "Shopping",
@@ -433,7 +433,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559956_vyhdv",
+      "id": "exp_1791989033372_nduul",
       "date": "2026-04-21",
       "monthKey": "2026-04",
       "category": "Groceries",
@@ -442,7 +442,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559956_2yqpn",
+      "id": "exp_1791989033372_a1zmy",
       "date": "2026-04-24",
       "monthKey": "2026-04",
       "category": "Entertainment",
@@ -451,7 +451,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559956_w0gm7",
+      "id": "exp_1791989033372_570jp",
       "date": "2026-04-26",
       "monthKey": "2026-04",
       "category": "Dining Out",
@@ -460,7 +460,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559956_695tw",
+      "id": "exp_1791989033372_0qyio",
       "date": "2026-04-28",
       "monthKey": "2026-04",
       "category": "Healthcare",
@@ -469,7 +469,7 @@
       "paymentMethod": "Cash"
     },
     {
-      "id": "exp_1791984559956_x9y7p",
+      "id": "exp_1791989033372_xgqy6",
       "date": "2026-05-02",
       "monthKey": "2026-05",
       "category": "Rent & Housing",
@@ -478,7 +478,7 @@
       "paymentMethod": "Net Banking"
     },
     {
-      "id": "exp_1791984559956_j14cp",
+      "id": "exp_1791989033372_xzoow",
       "date": "2026-05-04",
       "monthKey": "2026-05",
       "category": "Groceries",
@@ -487,7 +487,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559956_66dvx",
+      "id": "exp_1791989033372_tlb7c",
       "date": "2026-05-07",
       "monthKey": "2026-05",
       "category": "Utilities & Bills",
@@ -496,7 +496,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559956_ml6e9",
+      "id": "exp_1791989033372_l33fq",
       "date": "2026-05-09",
       "monthKey": "2026-05",
       "category": "Dining Out",
@@ -505,7 +505,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559956_8bkem",
+      "id": "exp_1791989033372_v4g84",
       "date": "2026-05-12",
       "monthKey": "2026-05",
       "category": "Groceries",
@@ -514,7 +514,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559956_mqwnv",
+      "id": "exp_1791989033372_dhksl",
       "date": "2026-05-15",
       "monthKey": "2026-05",
       "category": "Transportation",
@@ -523,7 +523,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559956_99v1s",
+      "id": "exp_1791989033372_5shh8",
       "date": "2026-05-18",
       "monthKey": "2026-05",
       "category": "Shopping",
@@ -532,7 +532,7 @@
       "paymentMethod": "Debit Card"
     },
     {
-      "id": "exp_1791984559956_brqdx",
+      "id": "exp_1791989033372_6b9et",
       "date": "2026-05-21",
       "monthKey": "2026-05",
       "category": "Entertainment",
@@ -541,7 +541,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559956_hbuc6",
+      "id": "exp_1791989033372_af3hy",
       "date": "2026-05-24",
       "monthKey": "2026-05",
       "category": "Dining Out",
@@ -550,7 +550,7 @@
       "paymentMethod": "Credit Card"
     },
     {
-      "id": "exp_1791984559956_aodai",
+      "id": "exp_1791989033372_02wd4",
       "date": "2026-05-27",
       "monthKey": "2026-05",
       "category": "Utilities & Bills",
@@ -559,7 +559,7 @@
       "paymentMethod": "UPI"
     },
     {
-      "id": "exp_1791984559956_skddu",
+      "id": "exp_1791989033372_by27n",
       "date": "2026-05-29",
       "monthKey": "2026-05",
       "category": "Healthcare",

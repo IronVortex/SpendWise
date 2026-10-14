@@ -5,7 +5,7 @@
  */
 
 process.env.KAFKAJS_NO_PARTITIONER_WARNING = '1';
-const { Kafka, Partitioners } = require('kafkajs');
+const { Kafka, logLevel } = require('kafkajs');
 const config = require('../config/config');
 
 class KafkaService {
@@ -23,10 +23,13 @@ class KafkaService {
       this.kafka = new Kafka({
         clientId: config.kafka.clientId,
         brokers: config.kafka.brokers,
-        connectionTimeout: config.kafka.connectionTimeout,
-        retry: { retries: 1 }
+        connectionTimeout: config.kafka.connectionTimeout || 1500,
+        logLevel: logLevel.NOTHING,
+        retry: { retries: 0 }
       });
-      this.producer = this.kafka.producer();
+      this.producer = this.kafka.producer({
+        retry: { retries: 0 }
+      });
     } catch (err) {
       this.kafka = null;
       this.producer = null;

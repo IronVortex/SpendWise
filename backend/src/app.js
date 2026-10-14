@@ -8,6 +8,7 @@ const cors = require('cors');
 const expenseRoutes = require('./routes/expenseRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
 const bigDataRoutes = require('./routes/bigDataRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
@@ -20,12 +21,13 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ONLINE',
-    project: 'Personal Expense Pattern Analysis',
+    project: 'SpendSense - Personal Expense Pattern Analysis',
     timestamp: new Date().toISOString()
   });
 });
 
 // API Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/bigdata', bigDataRoutes);

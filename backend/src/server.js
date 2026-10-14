@@ -9,7 +9,7 @@ const PORT = config.port;
 
 const server = app.listen(PORT, () => {
   console.log('====================================================');
-  console.log(' Personal Expense Pattern Analysis - Backend API');
+  console.log(' SpendSense | Personal Expense Pattern Analysis');
   console.log('====================================================');
   console.log(` Server running on : http://localhost:${PORT}`);
   console.log(` Alert Threshold   : > ${config.budgetAlertThresholdPercent}% MoM Increase`);

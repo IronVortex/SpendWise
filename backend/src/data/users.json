@@ -1,0 +1,34 @@
+[
+  {
+    "id": "user_demo_001",
+    "name": "Alex Taylor",
+    "email": "demo@spendsense.com",
+    "passwordHash": "$2b$10$kRa7bOBFc6Av7a0R/2W1.uYqIAbgUy4ADSUS2xO.4hY6YBdB8pAIi",
+    "role": "Lead Analyst",
+    "createdAt": "2026-10-14T13:36:42.387Z"
+  },
+  {
+    "id": "user_1791985031759_qw28w",
+    "name": "Jordan Finch",
+    "email": "fintech_user_1791985031562@test.com",
+    "passwordHash": "$2b$10$ufbg0havXGVZj7WafkCC6.jCLlli9CId.WkYjvMcA5lcrudvOfDOG",
+    "role": "Member",
+    "createdAt": "2026-10-14T13:37:11.759Z"
+  },
+  {
+    "id": "user_1791985750692_c999v",
+    "name": "Jordan Finch",
+    "email": "fintech_user_1791985750523@test.com",
+    "passwordHash": "$2b$10$RPep7dw3/Tyi/NjHunNhdeKjrbGcp69a9NXGYxLtiDMPCILZrnel2",
+    "role": "Member",
+    "createdAt": "2026-10-14T13:49:10.692Z"
+  },
+  {
+    "id": "user_1791987194380_eowdy",
+    "name": "Jordan Finch",
+    "email": "fintech_user_1791987193971@test.com",
+    "passwordHash": "$2b$10$7bKSmSO2FqHajsK5MTPsyexYgQPue0GXPlNkQGjk3Vl2iI6CpmjwC",
+    "role": "Member",
+    "createdAt": "2026-10-14T14:13:14.380Z"
+  }
+]
