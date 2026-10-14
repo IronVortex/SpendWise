@@ -1,0 +1,571 @@
+{
+  "datasetName": "personal_expenses_sample.csv",
+  "isSample": true,
+  "uploadedAt": "2026-10-14T13:29:19.956Z",
+  "stats": {
+    "totalRows": 61,
+    "acceptedRows": 61,
+    "skippedRows": 0,
+    "duplicateRows": 0,
+    "rejectedRows": 0
+  },
+  "columnMapping": {
+    "date": "date",
+    "category": "category",
+    "amount": "amount",
+    "description": "description",
+    "paymentMethod": "payment_method"
+  },
+  "totalRecords": 61,
+  "expenses": [
+    {
+      "id": "exp_1791984559955_3hxzi",
+      "date": "2026-01-02",
+      "monthKey": "2026-01",
+      "category": "Rent & Housing",
+      "amount": 22000,
+      "description": "Apartment Monthly Rent",
+      "paymentMethod": "Net Banking"
+    },
+    {
+      "id": "exp_1791984559955_3fbia",
+      "date": "2026-01-03",
+      "monthKey": "2026-01",
+      "category": "Groceries",
+      "amount": 3200,
+      "description": "Supermarket pantry and vegetables",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_lqxbj",
+      "date": "2026-01-05",
+      "monthKey": "2026-01",
+      "category": "Utilities & Bills",
+      "amount": 1450,
+      "description": "Electricity Board Bill",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_fbxbc",
+      "date": "2026-01-07",
+      "monthKey": "2026-01",
+      "category": "Dining Out",
+      "amount": 1200,
+      "description": "Weekend family dinner at BBQ Nation",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559955_ds2fm",
+      "date": "2026-01-10",
+      "monthKey": "2026-01",
+      "category": "Transportation",
+      "amount": 2100,
+      "description": "Metro Smart Card monthly recharge",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_rozcv",
+      "date": "2026-01-12",
+      "monthKey": "2026-01",
+      "category": "Groceries",
+      "amount": 2800,
+      "description": "Organic fruits and dairy staples",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_20026",
+      "date": "2026-01-15",
+      "monthKey": "2026-01",
+      "category": "Entertainment",
+      "amount": 1999,
+      "description": "Annual OTT subscription renewal",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559955_dq4xt",
+      "date": "2026-01-18",
+      "monthKey": "2026-01",
+      "category": "Dining Out",
+      "amount": 1850,
+      "description": "Team lunch and coffee",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_rr65u",
+      "date": "2026-01-20",
+      "monthKey": "2026-01",
+      "category": "Shopping",
+      "amount": 4200,
+      "description": "Winter jacket and casual shoes",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559955_90pj0",
+      "date": "2026-01-22",
+      "monthKey": "2026-01",
+      "category": "Groceries",
+      "amount": 2500,
+      "description": "Weekly ration and provisions",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_rjrm5",
+      "date": "2026-01-25",
+      "monthKey": "2026-01",
+      "category": "Healthcare",
+      "amount": 1500,
+      "description": "Routine dental checkup",
+      "paymentMethod": "Cash"
+    },
+    {
+      "id": "exp_1791984559955_trigi",
+      "date": "2026-01-27",
+      "monthKey": "2026-01",
+      "category": "Dining Out",
+      "amount": 1450,
+      "description": "Café hangout and snacks",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_z9lj6",
+      "date": "2026-01-28",
+      "monthKey": "2026-01",
+      "category": "Utilities & Bills",
+      "amount": 1650,
+      "description": "Broadband WiFi and mobile postpaid",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_rurqy",
+      "date": "2026-01-30",
+      "monthKey": "2026-01",
+      "category": "Shopping",
+      "amount": 2000,
+      "description": "Books and desk stationery",
+      "paymentMethod": "Debit Card"
+    },
+    {
+      "id": "exp_1791984559955_b4l08",
+      "date": "2026-02-02",
+      "monthKey": "2026-02",
+      "category": "Rent & Housing",
+      "amount": 22000,
+      "description": "Apartment Monthly Rent",
+      "paymentMethod": "Net Banking"
+    },
+    {
+      "id": "exp_1791984559955_mrk30",
+      "date": "2026-02-04",
+      "monthKey": "2026-02",
+      "category": "Groceries",
+      "amount": 4100,
+      "description": "Monthly grocery bulk haul",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_dj9q6",
+      "date": "2026-02-06",
+      "monthKey": "2026-02",
+      "category": "Utilities & Bills",
+      "amount": 1500,
+      "description": "Electricity Bill",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_kvth0",
+      "date": "2026-02-08",
+      "monthKey": "2026-02",
+      "category": "Dining Out",
+      "amount": 3100,
+      "description": "Birthday celebration dinner",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559955_yv7b6",
+      "date": "2026-02-11",
+      "monthKey": "2026-02",
+      "category": "Transportation",
+      "amount": 2250,
+      "description": "Cab fares and fuel refill",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_g9apy",
+      "date": "2026-02-14",
+      "monthKey": "2026-02",
+      "category": "Dining Out",
+      "amount": 2600,
+      "description": "Valentine's Day special bistro dinner",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559955_sfzq2",
+      "date": "2026-02-16",
+      "monthKey": "2026-02",
+      "category": "Entertainment",
+      "amount": 2200,
+      "description": "IMAX Movie tickets and popcorn",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_fcqj4",
+      "date": "2026-02-19",
+      "monthKey": "2026-02",
+      "category": "Dining Out",
+      "amount": 2100,
+      "description": "Weekend food delivery Swiggy & Zomato",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_vg00r",
+      "date": "2026-02-21",
+      "monthKey": "2026-02",
+      "category": "Groceries",
+      "amount": 4300,
+      "description": "Gourmet ingredients and dry fruits",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559955_jg59v",
+      "date": "2026-02-24",
+      "monthKey": "2026-02",
+      "category": "Healthcare",
+      "amount": 1200,
+      "description": "Eye clinic prescription glasses",
+      "paymentMethod": "Debit Card"
+    },
+    {
+      "id": "exp_1791984559955_bls73",
+      "date": "2026-02-26",
+      "monthKey": "2026-02",
+      "category": "Utilities & Bills",
+      "amount": 1550,
+      "description": "Broadband and mobile recharge",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_t8luf",
+      "date": "2026-02-27",
+      "monthKey": "2026-02",
+      "category": "Shopping",
+      "amount": 3800,
+      "description": "Formal work shirts",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559955_va4yc",
+      "date": "2026-03-02",
+      "monthKey": "2026-03",
+      "category": "Rent & Housing",
+      "amount": 22000,
+      "description": "Apartment Monthly Rent",
+      "paymentMethod": "Net Banking"
+    },
+    {
+      "id": "exp_1791984559955_jf0ti",
+      "date": "2026-03-04",
+      "monthKey": "2026-03",
+      "category": "Groceries",
+      "amount": 4400,
+      "description": "Wholesale store grocery restocking",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_w9669",
+      "date": "2026-03-07",
+      "monthKey": "2026-03",
+      "category": "Dining Out",
+      "amount": 2400,
+      "description": "Italian restaurant dinner",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559955_f509u",
+      "date": "2026-03-09",
+      "monthKey": "2026-03",
+      "category": "Shopping",
+      "amount": 5500,
+      "description": "Electronics accessories and headphones",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559955_zey7i",
+      "date": "2026-03-12",
+      "monthKey": "2026-03",
+      "category": "Utilities & Bills",
+      "amount": 1600,
+      "description": "Electricity Bill",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_796mp",
+      "date": "2026-03-14",
+      "monthKey": "2026-03",
+      "category": "Shopping",
+      "amount": 4200,
+      "description": "Weekend mall shopping spree",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559955_37ecg",
+      "date": "2026-03-17",
+      "monthKey": "2026-03",
+      "category": "Transportation",
+      "amount": 2300,
+      "description": "Metro pass and auto rickshaw rides",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_qaazd",
+      "date": "2026-03-20",
+      "monthKey": "2026-03",
+      "category": "Shopping",
+      "amount": 2800,
+      "description": "Kitchen appliances and cookware",
+      "paymentMethod": "Debit Card"
+    },
+    {
+      "id": "exp_1791984559955_5o9t3",
+      "date": "2026-03-22",
+      "monthKey": "2026-03",
+      "category": "Groceries",
+      "amount": 4100,
+      "description": "Weekly vegetables and pulses",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_pwcyw",
+      "date": "2026-03-25",
+      "monthKey": "2026-03",
+      "category": "Entertainment",
+      "amount": 1500,
+      "description": "Live comedy show ticket",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_6do32",
+      "date": "2026-03-27",
+      "monthKey": "2026-03",
+      "category": "Dining Out",
+      "amount": 2500,
+      "description": "Brunch with college friends",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_5n2ml",
+      "date": "2026-03-29",
+      "monthKey": "2026-03",
+      "category": "Utilities & Bills",
+      "amount": 1500,
+      "description": "Broadband WiFi fiber plan",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_xdnsa",
+      "date": "2026-03-30",
+      "monthKey": "2026-03",
+      "category": "Healthcare",
+      "amount": 1800,
+      "description": "Health checkup and vitamins",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_efnmx",
+      "date": "2026-04-02",
+      "monthKey": "2026-04",
+      "category": "Rent & Housing",
+      "amount": 22000,
+      "description": "Apartment Monthly Rent",
+      "paymentMethod": "Net Banking"
+    },
+    {
+      "id": "exp_1791984559955_elx8c",
+      "date": "2026-04-04",
+      "monthKey": "2026-04",
+      "category": "Groceries",
+      "amount": 4200,
+      "description": "Supermarket essentials",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_g64s7",
+      "date": "2026-04-06",
+      "monthKey": "2026-04",
+      "category": "Utilities & Bills",
+      "amount": 3200,
+      "description": "Summer AC peak electricity bill",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559955_pytpe",
+      "date": "2026-04-09",
+      "monthKey": "2026-04",
+      "category": "Dining Out",
+      "amount": 2200,
+      "description": "Dinner at south Indian restaurant",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559956_s7il7",
+      "date": "2026-04-12",
+      "monthKey": "2026-04",
+      "category": "Utilities & Bills",
+      "amount": 1600,
+      "description": "High-speed broadband and water utility",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559956_zfrax",
+      "date": "2026-04-15",
+      "monthKey": "2026-04",
+      "category": "Transportation",
+      "amount": 2400,
+      "description": "Fuel and toll charges",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559956_wx6jd",
+      "date": "2026-04-18",
+      "monthKey": "2026-04",
+      "category": "Shopping",
+      "amount": 4100,
+      "description": "Summer apparel and sunglasses",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559956_vyhdv",
+      "date": "2026-04-21",
+      "monthKey": "2026-04",
+      "category": "Groceries",
+      "amount": 4300,
+      "description": "Monthly ration and fresh produce",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559956_2yqpn",
+      "date": "2026-04-24",
+      "monthKey": "2026-04",
+      "category": "Entertainment",
+      "amount": 1800,
+      "description": "Cinema and gaming zone",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559956_w0gm7",
+      "date": "2026-04-26",
+      "monthKey": "2026-04",
+      "category": "Dining Out",
+      "amount": 2100,
+      "description": "Weekend takeaway",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559956_695tw",
+      "date": "2026-04-28",
+      "monthKey": "2026-04",
+      "category": "Healthcare",
+      "amount": 1100,
+      "description": "Pharmacy prescription medicines",
+      "paymentMethod": "Cash"
+    },
+    {
+      "id": "exp_1791984559956_x9y7p",
+      "date": "2026-05-02",
+      "monthKey": "2026-05",
+      "category": "Rent & Housing",
+      "amount": 22000,
+      "description": "Apartment Monthly Rent",
+      "paymentMethod": "Net Banking"
+    },
+    {
+      "id": "exp_1791984559956_j14cp",
+      "date": "2026-05-04",
+      "monthKey": "2026-05",
+      "category": "Groceries",
+      "amount": 5900,
+      "description": "Festival feast grocery and sweets bulk buy",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559956_66dvx",
+      "date": "2026-05-07",
+      "monthKey": "2026-05",
+      "category": "Utilities & Bills",
+      "amount": 1700,
+      "description": "Electricity Bill",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559956_ml6e9",
+      "date": "2026-05-09",
+      "monthKey": "2026-05",
+      "category": "Dining Out",
+      "amount": 2300,
+      "description": "Rooftop restaurant dinner",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559956_8bkem",
+      "date": "2026-05-12",
+      "monthKey": "2026-05",
+      "category": "Groceries",
+      "amount": 5300,
+      "description": "Organic produce and imported pantry items",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559956_mqwnv",
+      "date": "2026-05-15",
+      "monthKey": "2026-05",
+      "category": "Transportation",
+      "amount": 2200,
+      "description": "Metro travel and cab charges",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559956_99v1s",
+      "date": "2026-05-18",
+      "monthKey": "2026-05",
+      "category": "Shopping",
+      "amount": 3500,
+      "description": "Gift items for family",
+      "paymentMethod": "Debit Card"
+    },
+    {
+      "id": "exp_1791984559956_brqdx",
+      "date": "2026-05-21",
+      "monthKey": "2026-05",
+      "category": "Entertainment",
+      "amount": 1400,
+      "description": "Streaming rentals and book purchase",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559956_hbuc6",
+      "date": "2026-05-24",
+      "monthKey": "2026-05",
+      "category": "Dining Out",
+      "amount": 2400,
+      "description": "Weekend sushi bar visit",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "exp_1791984559956_aodai",
+      "date": "2026-05-27",
+      "monthKey": "2026-05",
+      "category": "Utilities & Bills",
+      "amount": 1500,
+      "description": "Broadband optical fiber bill",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "exp_1791984559956_skddu",
+      "date": "2026-05-29",
+      "monthKey": "2026-05",
+      "category": "Healthcare",
+      "amount": 2500,
+      "description": "Comprehensive routine blood panel",
+      "paymentMethod": "UPI"
+    }
+  ]
+}

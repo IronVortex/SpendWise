@@ -1,0 +1,62 @@
+date,category,amount,description,payment_method
+2026-01-02,Rent & Housing,22000.00,"Apartment Monthly Rent",Net Banking
+2026-01-03,Groceries,3200.00,"Supermarket pantry and vegetables",UPI
+2026-01-05,Utilities & Bills,1450.00,"Electricity Board Bill",UPI
+2026-01-07,Dining Out,1200.00,"Weekend family dinner at BBQ Nation",Credit Card
+2026-01-10,Transportation,2100.00,"Metro Smart Card monthly recharge",UPI
+2026-01-12,Groceries,2800.00,"Organic fruits and dairy staples",UPI
+2026-01-15,Entertainment,1999.00,"Annual OTT subscription renewal",Credit Card
+2026-01-18,Dining Out,1850.00,"Team lunch and coffee",UPI
+2026-01-20,Shopping,4200.00,"Winter jacket and casual shoes",Credit Card
+2026-01-22,Groceries,2500.00,"Weekly ration and provisions",UPI
+2026-01-25,Healthcare,1500.00,"Routine dental checkup",Cash
+2026-01-27,Dining Out,1450.00,"Café hangout and snacks",UPI
+2026-01-28,Utilities & Bills,1650.00,"Broadband WiFi and mobile postpaid",UPI
+2026-01-30,Shopping,2000.00,"Books and desk stationery",Debit Card
+2026-02-02,Rent & Housing,22000.00,"Apartment Monthly Rent",Net Banking
+2026-02-04,Groceries,4100.00,"Monthly grocery bulk haul",UPI
+2026-02-06,Utilities & Bills,1500.00,"Electricity Bill",UPI
+2026-02-08,Dining Out,3100.00,"Birthday celebration dinner",Credit Card
+2026-02-11,Transportation,2250.00,"Cab fares and fuel refill",UPI
+2026-02-14,Dining Out,2600.00,"Valentine's Day special bistro dinner",Credit Card
+2026-02-16,Entertainment,2200.00,"IMAX Movie tickets and popcorn",UPI
+2026-02-19,Dining Out,2100.00,"Weekend food delivery Swiggy & Zomato",UPI
+2026-02-21,Groceries,4300.00,"Gourmet ingredients and dry fruits",Credit Card
+2026-02-24,Healthcare,1200.00,"Eye clinic prescription glasses",Debit Card
+2026-02-26,Utilities & Bills,1550.00,"Broadband and mobile recharge",UPI
+2026-02-27,Shopping,3800.00,"Formal work shirts",Credit Card
+2026-03-02,Rent & Housing,22000.00,"Apartment Monthly Rent",Net Banking
+2026-03-04,Groceries,4400.00,"Wholesale store grocery restocking",UPI
+2026-03-07,Dining Out,2400.00,"Italian restaurant dinner",Credit Card
+2026-03-09,Shopping,5500.00,"Electronics accessories and headphones",Credit Card
+2026-03-12,Utilities & Bills,1600.00,"Electricity Bill",UPI
+2026-03-14,Shopping,4200.00,"Weekend mall shopping spree",Credit Card
+2026-03-17,Transportation,2300.00,"Metro pass and auto rickshaw rides",UPI
+2026-03-20,Shopping,2800.00,"Kitchen appliances and cookware",Debit Card
+2026-03-22,Groceries,4100.00,"Weekly vegetables and pulses",UPI
+2026-03-25,Entertainment,1500.00,"Live comedy show ticket",UPI
+2026-03-27,Dining Out,2500.00,"Brunch with college friends",UPI
+2026-03-29,Utilities & Bills,1500.00,"Broadband WiFi fiber plan",UPI
+2026-03-30,Healthcare,1800.00,"Health checkup and vitamins",UPI
+2026-04-02,Rent & Housing,22000.00,"Apartment Monthly Rent",Net Banking
+2026-04-04,Groceries,4200.00,"Supermarket essentials",UPI
+2026-04-06,Utilities & Bills,3200.00,"Summer AC peak electricity bill",UPI
+2026-04-09,Dining Out,2200.00,"Dinner at south Indian restaurant",UPI
+2026-04-12,Utilities & Bills,1600.00,"High-speed broadband and water utility",UPI
+2026-04-15,Transportation,2400.00,"Fuel and toll charges",Credit Card
+2026-04-18,Shopping,4100.00,"Summer apparel and sunglasses",Credit Card
+2026-04-21,Groceries,4300.00,"Monthly ration and fresh produce",UPI
+2026-04-24,Entertainment,1800.00,"Cinema and gaming zone",UPI
+2026-04-26,Dining Out,2100.00,"Weekend takeaway",UPI
+2026-04-28,Healthcare,1100.00,"Pharmacy prescription medicines",Cash
+2026-05-02,Rent & Housing,22000.00,"Apartment Monthly Rent",Net Banking
+2026-05-04,Groceries,5900.00,"Festival feast grocery and sweets bulk buy",UPI
+2026-05-07,Utilities & Bills,1700.00,"Electricity Bill",UPI
+2026-05-09,Dining Out,2300.00,"Rooftop restaurant dinner",Credit Card
+2026-05-12,Groceries,5300.00,"Organic produce and imported pantry items",Credit Card
+2026-05-15,Transportation,2200.00,"Metro travel and cab charges",UPI
+2026-05-18,Shopping,3500.00,"Gift items for family",Debit Card
+2026-05-21,Entertainment,1400.00,"Streaming rentals and book purchase",UPI
+2026-05-24,Dining Out,2400.00,"Weekend sushi bar visit",Credit Card
+2026-05-27,Utilities & Bills,1500.00,"Broadband optical fiber bill",UPI
+2026-05-29,Healthcare,2500.00,"Comprehensive routine blood panel",UPI

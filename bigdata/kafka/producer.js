@@ -11,7 +11,10 @@ const { Kafka } = require('kafkajs');
 const BROKERS = (process.env.KAFKA_BROKERS || 'localhost:9092').split(',');
 const TOPIC = process.env.KAFKA_TOPIC || 'expense-transactions';
 const CLIENT_ID = 'expense-producer-cli';
-const CSV_FILE = process.argv[2] || path.resolve(__dirname, '../../sample_data/personal_expenses_sample.csv');
+const DEFAULT_CSV = fs.existsSync(path.resolve(__dirname, '../../backend/src/data/current_expenses.csv'))
+  ? path.resolve(__dirname, '../../backend/src/data/current_expenses.csv')
+  : path.resolve(__dirname, '../../sample_data/personal_expenses_sample.csv');
+const CSV_FILE = process.argv[2] || DEFAULT_CSV;
 const DELAY_MS = parseInt(process.env.STREAM_DELAY_MS || '400', 10);
 
 async function runProducer() {

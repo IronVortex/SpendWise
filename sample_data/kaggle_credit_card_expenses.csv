@@ -1,0 +1,35 @@
+Transaction Date,Expense Category,Transaction Amount,Merchant,Card Type
+12/01/2026,Dining Out,1850.50,Barbeque Nation,Credit Card
+14/01/2026,Groceries,₹4,200.00,Reliance Fresh Supermarket,Debit Card
+18/01/2026,Utilities & Bills,1450.00,State Electricity Board,UPI
+20/01/2026,Shopping,3800.00,Amazon Retail India,Credit Card
+25/01/2026,Rent & Housing,22000.00,Landlord Monthly Lease,Net Banking
+28/01/2026,Transportation,1200.00,Uber Commute,UPI
+04/02/2026,Dining Out,3400.00,Pizzeria Bistro,Credit Card
+08/02/2026,Groceries,₹4,100.00,BigBasket Provisions,UPI
+12/02/2026,Utilities & Bills,1500.00,Broadband WiFi,UPI
+16/02/2026,Dining Out,2900.00,Weekend Swiggy Deliveries,Credit Card
+20/02/2026,Shopping,2900.00,Zara Apparel,Credit Card
+25/02/2026,Rent & Housing,22000.00,Landlord Monthly Lease,Net Banking
+28/02/2026,Transportation,1300.00,Metro Travel Card,Debit Card
+05/03/2026,Dining Out,2100.00,Café Coffee Day,UPI
+10/03/2026,Groceries,4300.00,Organic Farmers Market,UPI
+14/03/2026,Shopping,9800.00,Croma Electronics Headphones,Credit Card
+18/03/2026,Shopping,4200.00,Myntra Festive Sale,Credit Card
+22/03/2026,Utilities & Bills,1550.00,Power Utility,UPI
+25/03/2026,Rent & Housing,22000.00,Landlord Monthly Lease,Net Banking
+29/03/2026,Healthcare,1800.00,Apollo Pharmacy,Cash
+04/04/2026,Dining Out,1900.00,Mainland China Lunch,Credit Card
+08/04/2026,Groceries,4250.00,Supermarket Essentials,UPI
+12/04/2026,Utilities & Bills,3200.00,Summer AC High Electricity,UPI
+16/04/2026,Utilities & Bills,1600.00,Fiber Internet,UPI
+20/04/2026,Shopping,3100.00,H&M Casual Wear,Credit Card
+25/04/2026,Rent & Housing,22000.00,Landlord Monthly Lease,Net Banking
+28/04/2026,Transportation,1400.00,Fuel Station Refill,Credit Card
+05/05/2026,Groceries,5900.00,Festival Gourmet Bulk Restock,UPI
+09/05/2026,Groceries,5300.00,Dry Fruits & Dairy,Credit Card
+14/05/2026,Dining Out,2200.00,Dhaba Dinner,Cash
+18/05/2026,Utilities & Bills,1700.00,Electricity Bill,UPI
+22/05/2026,Shopping,3500.00,Bookstore & Stationery,Debit Card
+25/05/2026,Rent & Housing,22000.00,Landlord Monthly Lease,Net Banking
+28/05/2026,Healthcare,2500.00,Diagnostic Health Check,UPI

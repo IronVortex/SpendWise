@@ -1,6 +1,7 @@
 /**
- * In-memory DataStore for Expense Records
- * Pre-populates with validated sample data on startup.
+ * Persistent DataStore for Expense Records
+ * Supports dataset replacement, metadata tracking (filename, upload time, sample vs uploaded),
+ * disk persistence across server restarts/page refreshes, and automatic sync to HDFS/Kafka input CSV.
  */
 
 const fs = require('fs');
@@ -10,19 +11,92 @@ const { parseAndValidateCsv, validateExpense } = require('../services/validation
 class DataStore {
   constructor() {
     this.expenses = [];
+    this.datasetName = 'personal_expenses_sample.csv';
+    this.isSample = true;
+    this.uploadedAt = new Date().toISOString();
+    this.stats = { totalRows: 0, acceptedRows: 0, skippedRows: 0, duplicateRows: 0, rejectedRows: 0 };
+    this.columnMapping = null;
+
     this.sampleFilePath = path.resolve(__dirname, 'sample_expenses.csv');
+    this.persistedJsonPath = path.resolve(__dirname, 'current_dataset.json');
+    this.currentCsvPath = path.resolve(__dirname, 'current_expenses.csv');
+    this.mapReduceInputPath = path.resolve(__dirname, '../../../bigdata/mapreduce/sample_input/expenses.csv');
+
     this.init();
   }
 
   /**
-   * Initializes store with sample dataset
+   * Initializes store: loads persisted dataset if available; otherwise loads default sample dataset
    */
   init() {
+    if (fs.existsSync(this.persistedJsonPath)) {
+      try {
+        const raw = fs.readFileSync(this.persistedJsonPath, 'utf8');
+        const data = JSON.parse(raw);
+        if (Array.isArray(data.expenses) && data.expenses.length > 0) {
+          this.expenses = data.expenses;
+          this.datasetName = data.datasetName || 'uploaded_dataset.csv';
+          this.isSample = data.isSample !== undefined ? data.isSample : false;
+          this.uploadedAt = data.uploadedAt || new Date().toISOString();
+          this.stats = data.stats || { totalRows: this.expenses.length, acceptedRows: this.expenses.length, skippedRows: 0, duplicateRows: 0, rejectedRows: 0 };
+          this.columnMapping = data.columnMapping || null;
+          return;
+        }
+      } catch (err) {
+        console.error('Failed to load persisted dataset:', err.message);
+      }
+    }
+
     this.loadSampleData();
   }
 
   /**
-   * Reads and parses sample CSV into memory
+   * Persists current dataset state to disk (JSON + CSV)
+   */
+  persistState() {
+    try {
+      const payload = {
+        datasetName: this.datasetName,
+        isSample: this.isSample,
+        uploadedAt: this.uploadedAt,
+        stats: this.stats,
+        columnMapping: this.columnMapping,
+        totalRecords: this.expenses.length,
+        expenses: this.expenses
+      };
+      fs.writeFileSync(this.persistedJsonPath, JSON.stringify(payload, null, 2), 'utf8');
+
+      // Export normalized CSV so Kafka Producer and Hadoop MapReduce can read active data
+      this.exportNormalizedCsv();
+    } catch (err) {
+      console.error('Failed to persist dataset state:', err.message);
+    }
+  }
+
+  /**
+   * Exports normalized expenses to CSV for Hadoop MapReduce & Kafka Producer
+   */
+  exportNormalizedCsv() {
+    try {
+      let csv = 'date,category,amount,description,payment_method\n';
+      for (const e of this.expenses) {
+        const desc = (e.description || '').replace(/"/g, '""');
+        csv += `${e.date},${e.category},${e.amount.toFixed(2)},"${desc}",${e.paymentMethod || 'UPI'}\n`;
+      }
+      fs.writeFileSync(this.currentCsvPath, csv, 'utf8');
+
+      // Also sync to MapReduce input path if directory exists
+      const mrDir = path.dirname(this.mapReduceInputPath);
+      if (fs.existsSync(mrDir)) {
+        fs.writeFileSync(this.mapReduceInputPath, csv, 'utf8');
+      }
+    } catch (err) {
+      console.error('Failed to export normalized CSV:', err.message);
+    }
+  }
+
+  /**
+   * Restores default curated sample dataset
    */
   loadSampleData() {
     try {
@@ -31,8 +105,23 @@ class DataStore {
         const parseResult = parseAndValidateCsv(content);
         if (parseResult.success) {
           this.expenses = parseResult.records;
+          this.datasetName = 'personal_expenses_sample.csv';
+          this.isSample = true;
+          this.uploadedAt = new Date().toISOString();
+          this.stats = {
+            totalRows: parseResult.totalRows,
+            acceptedRows: parseResult.acceptedRows,
+            skippedRows: parseResult.skippedRows,
+            duplicateRows: parseResult.duplicateRows,
+            rejectedRows: parseResult.rejectedRows
+          };
+          this.columnMapping = parseResult.columnMappingUsed || null;
+          this.persistState();
+
           return {
             success: true,
+            datasetName: this.datasetName,
+            isSample: true,
             count: this.expenses.length,
             message: `Successfully loaded ${this.expenses.length} sample transactions.`
           };
@@ -47,6 +136,51 @@ class DataStore {
   }
 
   /**
+   * Sets new uploaded dataset (replaces or appends) and persists to disk
+   */
+  setDataset({ name, records, isSample = false, stats = {}, columnMapping = null, replace = true }) {
+    if (replace) {
+      this.expenses = [...records];
+      this.datasetName = name || 'uploaded_dataset.csv';
+      this.isSample = isSample;
+      this.uploadedAt = new Date().toISOString();
+      this.stats = stats;
+      this.columnMapping = columnMapping;
+    } else {
+      this.expenses.push(...records);
+      this.datasetName = `${this.datasetName} + ${name}`;
+      this.isSample = false;
+      this.stats.totalRows = (this.stats.totalRows || 0) + (stats.totalRows || records.length);
+      this.stats.acceptedRows = (this.stats.acceptedRows || 0) + records.length;
+    }
+
+    this.persistState();
+
+    return {
+      success: true,
+      datasetName: this.datasetName,
+      isSample: this.isSample,
+      uploadedAt: this.uploadedAt,
+      totalRecords: this.expenses.length,
+      stats: this.stats
+    };
+  }
+
+  /**
+   * Returns metadata about the currently loaded dataset
+   */
+  getDatasetInfo() {
+    return {
+      datasetName: this.datasetName,
+      isSample: this.isSample,
+      uploadedAt: this.uploadedAt,
+      totalRecords: this.expenses.length,
+      stats: this.stats,
+      columnMapping: this.columnMapping
+    };
+  }
+
+  /**
    * Returns all stored expenses
    */
   getAll() {
@@ -54,23 +188,27 @@ class DataStore {
   }
 
   /**
-   * Returns expense count
+   * Returns count
    */
   count() {
     return this.expenses.length;
   }
 
   /**
-   * Clears all transactions
+   * Clears transactions
    */
   clear() {
     const prevCount = this.expenses.length;
     this.expenses = [];
+    this.datasetName = 'empty_dataset.csv';
+    this.isSample = false;
+    this.stats = { totalRows: 0, acceptedRows: 0, skippedRows: 0, duplicateRows: 0, rejectedRows: 0 };
+    this.persistState();
     return { success: true, clearedCount: prevCount };
   }
 
   /**
-   * Adds a single validated expense
+   * Adds single expense
    */
   add(record) {
     const validated = validateExpense(record);
@@ -78,11 +216,12 @@ class DataStore {
       return { success: false, errors: validated.errors };
     }
     this.expenses.push(validated.data);
+    this.persistState();
     return { success: true, expense: validated.data };
   }
 
   /**
-   * Adds an array of validated expenses
+   * Adds batch of validated expenses
    */
   addBatch(records) {
     if (!Array.isArray(records)) {
@@ -102,6 +241,7 @@ class DataStore {
 
     if (inserted.length > 0) {
       this.expenses.push(...inserted);
+      this.persistState();
     }
 
     return {
@@ -130,7 +270,6 @@ class DataStore {
 
     let result = [...this.expenses];
 
-    // Search query
     if (search && search.trim()) {
       const q = search.trim().toLowerCase();
       result = result.filter(exp =>
@@ -141,17 +280,14 @@ class DataStore {
       );
     }
 
-    // Category filter
     if (category && category !== 'All') {
       result = result.filter(exp => exp.category.toLowerCase() === category.toLowerCase());
     }
 
-    // Month filter (YYYY-MM)
     if (month && month !== 'All') {
       result = result.filter(exp => exp.monthKey === month);
     }
 
-    // Date range filter
     if (startDate) {
       result = result.filter(exp => exp.date >= startDate);
     }
@@ -159,7 +295,6 @@ class DataStore {
       result = result.filter(exp => exp.date <= endDate);
     }
 
-    // Sorting
     result.sort((a, b) => {
       let comparison = 0;
       if (sortBy === 'amount') {
@@ -167,13 +302,11 @@ class DataStore {
       } else if (sortBy === 'category') {
         comparison = a.category.localeCompare(b.category);
       } else {
-        // default date
         comparison = a.date.localeCompare(b.date);
       }
       return sortOrder.toLowerCase() === 'desc' ? -comparison : comparison;
     });
 
-    // Pagination
     const total = result.length;
     const pageNum = Math.max(1, parseInt(page, 10) || 1);
     const limitNum = Math.max(1, Math.min(100, parseInt(limit, 10) || 20));
@@ -181,7 +314,6 @@ class DataStore {
     const offset = (pageNum - 1) * limitNum;
     const paginatedItems = result.slice(offset, offset + limitNum);
 
-    // Get unique categories and months available in all records
     const allCategories = Array.from(new Set(this.expenses.map(e => e.category))).sort();
     const allMonths = Array.from(new Set(this.expenses.map(e => e.monthKey))).sort();
 
@@ -194,7 +326,8 @@ class DataStore {
         totalPages
       },
       availableCategories: allCategories,
-      availableMonths: allMonths
+      availableMonths: allMonths,
+      datasetInfo: this.getDatasetInfo()
     };
   }
 }
