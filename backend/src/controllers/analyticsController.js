@@ -11,9 +11,13 @@ exports.getOverview = (req, res) => {
   try {
     const expenses = dataStore.getAll();
     const overview = analyticsService.getOverviewMetrics(expenses);
+    const datasetInfo = dataStore.getDatasetInfo();
     res.json({
       success: true,
-      data: overview
+      data: {
+        ...overview,
+        datasetInfo
+      }
     });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
